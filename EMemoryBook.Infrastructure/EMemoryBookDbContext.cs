@@ -1,15 +1,35 @@
-﻿using EMemoryBook.Domain.Models;
+﻿using System.Configuration;
+using EMemoryBook.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EMemoryBook.Infrastructure;
 
 public class EMemoryBookDbContext : DbContext
 {
+    private readonly IConfiguration _configuration;
+
+    public EMemoryBookDbContext(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    public EMemoryBookDbContext(DbContextOptions<EMemoryBookDbContext> options) : base(options)
+    {
+
+    }
     public DbSet<User> Users { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<Template> Templates { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<Payment> Payments { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+
+        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("EMemoryBookCs"));
+
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -56,6 +76,7 @@ public class EMemoryBookDbContext : DbContext
         modelBuilder.Entity<Payment>()
             .HasOne(p => p.Event)
             .WithOne(e => e.Payment)
-            .HasForeignKey<Payment>(p => p.EventId);
+            .HasForeignKey<Payment>(p => p.EventId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

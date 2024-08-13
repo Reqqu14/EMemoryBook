@@ -11,11 +11,10 @@ namespace EMemoryBook.Infrastructure
     {
         public static void AddMediatrDatabaseValidationAndServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddDbContext<EMemoryBookDbContext>(options =>
-            //    options.UseSqlServer(configuration.GetConnectionString("EMemoryBookCs")));
+            services.AddDbContext<EMemoryBookDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("EMemoryBookCs")));
 
             //services.AddMediatR(typeof(Bootstraper));
-            services.AddDbContext<EMemoryBookDbContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             
             services.AddScoped<IEventRepository, EventRepository>();
