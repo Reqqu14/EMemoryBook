@@ -15,13 +15,12 @@ namespace EMemoryBook.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("EMemoryBookCs")));
 
             //services.AddMediatR(typeof(Bootstraper));
-            services.AddScoped<IUserRepository, UserRepository>();
-            
-            services.AddScoped<IEventRepository, EventRepository>();
-            services.AddScoped<ITemplateRepository, TemplateRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
-            services.AddScoped<IPaymentRepository, PaymentRepository>();
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IUserRepository, UserRepository>();           
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<ITemplateRepository, TemplateRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         }
     }
 }

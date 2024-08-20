@@ -7,29 +7,30 @@ namespace EMemoryBook.Infrastructure;
 
 public class EMemoryBookDbContext : DbContext
 {
-    private readonly IConfiguration _configuration;
+    //private readonly IConfiguration _configuration;
 
-    public EMemoryBookDbContext(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    //public EMemoryBookDbContext()
+    //{
+
+    //}
+
+    
 
     public EMemoryBookDbContext(DbContextOptions<EMemoryBookDbContext> options) : base(options)
     {
 
     }
+
     public DbSet<User> Users { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<Template> Templates { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<Payment> Payments { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-
-        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("EMemoryBookCs"));
-
-    }
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+      //  optionsBuilder.UseSqlServer(_configuration.GetConnectionString("EMemoryBookCs"));
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

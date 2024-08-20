@@ -1,14 +1,23 @@
-﻿using EMemoryBook.Domain.Models;
-using EMemoryBook.Infrastructure.Repositories;
+﻿using EMemoryBook.Application.Interfaces;
+using EMemoryBook.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMemoryBook.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PaymentController : BaseController<Payment>
+public class PaymentController : ControllerBase
 {
-    public PaymentController(BaseRepository<Payment> repository) : base(repository)
+    private readonly IPaymentService _paymentService;
+
+    public PaymentController(IPaymentService paymentService)
     {
+        _paymentService = paymentService;
+    }
+
+    [HttpPatch]
+    public async Task SetPaymentStatus(Guid eventId, PaymentStatus paymentStatus)
+    {
+        await _paymentService.SetPaymentStatus(eventId, paymentStatus);
     }
 }

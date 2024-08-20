@@ -38,12 +38,9 @@ namespace EMemoryBook.Infrastructure.Repositories
 
         public async Task DeleteAsync(Guid id)
         {
-            var entity = await GetByIdAsync(id);
-            if (entity != null)
-            {
-                _dbSet.Remove(entity);
-                await _context.SaveChangesAsync();
-            }
+            var entity = await GetByIdAsync(id) ?? throw new Exception("User not Exists");
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

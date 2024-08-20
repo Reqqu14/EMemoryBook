@@ -6,4 +6,30 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\User\" />
+    <None Remove="Dtos\Event\" />
+    <None Remove="Dtos\Template\" />
+    <None Remove="Dtos\Message\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\User\" />
+    <Folder Include="Dtos\Event\" />
+    <Folder Include="Dtos\Template\" />
+    <Folder Include="Dtos\Message\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EMemoryBook.Infrastructure\EMemoryBook.Infrastructure.csproj" />
+    <ProjectReference Include="..\EMemoryBook.Domain\EMemoryBook.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Azure.Core" Version="1.41.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.21.2" />
+  </ItemGroup>
 </Project>

@@ -13,6 +13,12 @@ namespace EMemoryBook.Infrastructure.Repositories
             return await _dbSet.Where(e => e.UserId == userId).ToListAsync();
         }
 
+        public async Task<Guid> GetEventIdByPassword(string password)
+        {
+            var @event = await _dbSet.FirstOrDefaultAsync(x => x.AccessPassword == password);
+            return @event.Id;
+        }
+
         public async Task<Event> GetEventWithDetailsAsync(Guid eventId)
         {
             return await _dbSet
