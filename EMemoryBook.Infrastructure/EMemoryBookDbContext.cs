@@ -9,12 +9,15 @@ public class EMemoryBookDbContext : DbContext
 {
     //private readonly IConfiguration _configuration;
 
+    //public EMemoryBookDbContext(IConfiguration configuration)
+    //{
+    //  _configuration = configuration;
+    //}
+
     //public EMemoryBookDbContext()
     //{
 
     //}
-
-    
 
     public EMemoryBookDbContext(DbContextOptions<EMemoryBookDbContext> options) : base(options)
     {
@@ -29,7 +32,7 @@ public class EMemoryBookDbContext : DbContext
 
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //{
-      //  optionsBuilder.UseSqlServer(_configuration.GetConnectionString("EMemoryBookCs"));
+    //   optionsBuilder.UseNpgsql(_configuration.GetConnectionString("EMemoryBookCs"));
     //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

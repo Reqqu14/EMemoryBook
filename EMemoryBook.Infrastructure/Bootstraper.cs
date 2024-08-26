@@ -12,8 +12,7 @@ namespace EMemoryBook.Infrastructure
         public static void AddMediatrDatabaseValidationAndServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<EMemoryBookDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("EMemoryBookCs")));
-
+                options.UseNpgsql(configuration.GetConnectionString("EMemoryBookCs")));
             //services.AddMediatR(typeof(Bootstraper));
             services.AddTransient<IUserRepository, UserRepository>();           
             services.AddTransient<IEventRepository, EventRepository>();

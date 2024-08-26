@@ -12,14 +12,23 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatrDatabaseValidationAndServices(builder.Configuration);
 builder.Services.AddServices();
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(80); // HTTP
+    options.ListenAnyIP(443, listenOptions =>
+    {
+        listenOptions.UseHttps("certyficates/aspnetapp.pfx", "test");
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 

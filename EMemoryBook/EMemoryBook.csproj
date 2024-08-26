@@ -11,9 +11,10 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
-    <PackageReference Include="Azure.Core" Version="1.41.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Azure.Core" Version="1.42.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,4 +24,10 @@
     </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="certyficates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="certyficates\" />
+  </ItemGroup>
 </Project>

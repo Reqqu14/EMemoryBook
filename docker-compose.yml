@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  ememorybook:
+    image: ${DOCKER_REGISTRY-}ememorybook
+    build:
+      context: .
+      dockerfile: EMemoryBook/Dockerfile
+    ports:
+      - "8080:80"    # Mapowanie portów dla HTTP
+      - "8081:443"   # Mapowanie portów dla HTTPS
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"                                # Ustawienie URL dla Kestrel
+      ASPNETCORE_HTTPS_PORTS: "8001"                                        # HTTPS port dla ASP.NET Core
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "test"           # Hasło do certyfikatu
+      ASPNETCORE_ENVIRONMENT: "Development"                                 # Środowisko ASP.NET Core
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/app/certyficates/aspnetapp.pfx" # Ścieżka do certyfikatu PFX
